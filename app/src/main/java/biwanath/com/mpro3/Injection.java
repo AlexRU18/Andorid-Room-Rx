@@ -3,7 +3,7 @@ package biwanath.com.mpro3;
 import android.content.Context;
 
 import biwanath.com.mpro3.data.AppDatabase;
-import biwanath.com.mpro3.data.departmentrepository.LocalExpenseDataSource;
+import biwanath.com.mpro3.data.departmentrepository.LocalDepartmentDataSource;
 import biwanath.com.mpro3.department.DepartmentDataSource;
 
 /**
@@ -13,7 +13,7 @@ import biwanath.com.mpro3.department.DepartmentDataSource;
 public class Injection {
     public static DepartmentDataSource provideExpenseDataSource(Context context) {
         AppDatabase database = AppDatabase.getInstance(context);
-        return new LocalExpenseDataSource(database.departmentDao());
+        return new LocalDepartmentDataSource(database.departmentDao());
     }
 
     public static ViewModelFactory provideViewModelFactory(Context context) {

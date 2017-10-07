@@ -20,9 +20,9 @@ public class Department {
     private String mDepartmentName;
 
     @Ignore
-    public Department(String type) {
+    public Department(String name) {
         mId = UUID.randomUUID().toString();
-        this.mDepartmentName = type;
+        this.mDepartmentName = name;
     }
     public Department(String id, String dep) {
         this.mId = id;

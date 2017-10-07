@@ -14,12 +14,12 @@ import io.reactivex.Flowable;
 @Dao
 public interface DepartmentDao {
 
-    @Query("SELECT * FROM Department LIMIT 1")
+    @Query("SELECT * FROM tblDepartment LIMIT 1")
     Flowable<Department> getDepartment();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertDepartment(Department dep);
 
-    @Query("DELETE FROM Department")
+    @Query("DELETE FROM tblDepartment")
     void deleteAllDepartment();
 }

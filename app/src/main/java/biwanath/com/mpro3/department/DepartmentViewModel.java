@@ -15,32 +15,32 @@ public class DepartmentViewModel extends ViewModel {
 
     private final DepartmentDataSource mExpenseDataSource;
 
-    private Department mExpense;
+    private Department mDeapartment;
 
     public DepartmentViewModel(DepartmentDataSource expDataSource) {
         mExpenseDataSource= expDataSource;
     }
 
-    public Flowable<String> getExpenseId() {
+    public Flowable<String> getDepartmentId() {
         return mExpenseDataSource.getDepartment()
                 // for every emission of the user, get the user name
-                .map(exp -> {
-                    mExpense = exp;
-                    return exp.getDepartmentId();
+                .map(dep -> {
+                    mDeapartment = dep;
+                    return dep.getDepartmentName();
                 });
 
     }
 
-    public Completable updateExpenseType(final String expType) {
+    public Completable updateDepartmentName(final String depName) {
         return new CompletableFromAction(() -> {
             // if there's no use, create a new user.
             // if we already have a user, then, since the user object is immutable,
             // create a new user, with the id of the previous user and the updated user name.
-            mExpense = mExpense == null
-                    ? new Department(expType) // TODO: to be update accordingly
-                    : new Department(mExpense.getDepartmentId(), expType);
+            mDeapartment = mDeapartment == null
+                    ? new Department(depName) // TODO: to be update accordingly
+                    : new Department(mDeapartment.getDepartmentId(), depName);
 
-            mExpenseDataSource.insertOrUpdateDepartment(mExpense);
+            mExpenseDataSource.insertOrUpdateDepartment(mDeapartment);
         });
     }
 }

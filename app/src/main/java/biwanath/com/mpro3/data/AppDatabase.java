@@ -14,7 +14,7 @@ import biwanath.com.mpro3.data.departmentrepository.DepartmentDao;
 @Database(entities = {Department.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase{
 
-    private static volatile AppDatabase INSTANCE;
+    private static  AppDatabase INSTANCE;
 
     public abstract DepartmentDao departmentDao();
 

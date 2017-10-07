@@ -12,16 +12,16 @@ import biwanath.com.mpro3.department.DepartmentViewModel;
 
 public class ViewModelFactory  implements ViewModelProvider.Factory{
 
-    private final DepartmentDataSource mExpenseDataSource;
+    private final DepartmentDataSource mDepartmentDataSource;
 
-    public ViewModelFactory(DepartmentDataSource expenseDataSource) {
-        mExpenseDataSource = expenseDataSource;
+    public ViewModelFactory(DepartmentDataSource departmentDataSource) {
+        mDepartmentDataSource = departmentDataSource;
     }
 
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (modelClass.isAssignableFrom(DepartmentViewModel.class)) {
-            return (T) new DepartmentViewModel(mExpenseDataSource);
+            return (T) new DepartmentViewModel(mDepartmentDataSource);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

@@ -40,7 +40,7 @@ public class DepartmentActivity extends AppCompatActivity {
 
         mViewModelFactory = Injection.provideViewModelFactory(this);
         mViewModel = ViewModelProviders.of(this, mViewModelFactory).get(DepartmentViewModel.class);
-        mUpdateButton.setOnClickListener(v -> updateExpenseType());
+        mUpdateButton.setOnClickListener(v -> updateDepartmentName());
     }
     @Override
     protected void onStart() {
@@ -48,7 +48,7 @@ public class DepartmentActivity extends AppCompatActivity {
         // Subscribe to the emissions of the user name from the view model.
         // Update the user name text view, at every onNext emission.
         // In case of error, log the exception.
-        mDisposable.add(mViewModel.getExpenseId()
+        mDisposable.add(mViewModel.getDepartmentId()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(userName -> mUserName.setText(userName),
@@ -62,13 +62,13 @@ public class DepartmentActivity extends AppCompatActivity {
         // clear all the subscriptions
         mDisposable.clear();
     }
-    private void updateExpenseType() {
+    private void updateDepartmentName() {
         String userName = mUserNameInput.getText().toString();
         // Disable the update button until the user name update has been done
         mUpdateButton.setEnabled(false);
         // Subscribe to updating the user name.
         // Re-enable the button once the user name has been updated
-        mDisposable.add(mViewModel.updateExpenseType(userName)
+        mDisposable.add(mViewModel.updateDepartmentName(userName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> mUpdateButton.setEnabled(true),
